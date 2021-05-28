@@ -92,14 +92,14 @@ class _OrderMenu extends State<OrderMenu> {
 
           body: TabBarView(
               children: <Widget>[
-                ProductScreen((selectedProduct) {
+                ProductScreen((selectedProduct) {     //Mengambil data dari stateless widget yang terdapat di bagian bawah
                   setState(() {
                     cart.add(selectedProduct);
                     sum = 0;
                     cart.forEach((item) {
                       sum = sum + item.price;
                     });
-                    namaMenu = products;
+                    namaMenu = products;             //Saya berpikir untuk menampung nama product yang terpilih pada variabel namaMenu, sehingga dapat dipanggil pada line 117
                   });
                 }),
                 CheckoutScreen(cart, sum),
@@ -114,7 +114,7 @@ class _OrderMenu extends State<OrderMenu> {
               await firestoreInstance.collection('Order').doc(
                   loggedInUser.email).set(
                   {
-                    'namamenu': Text("${products[index].name}"),
+                    'namamenu': Text("${products[index].name}"),       //di bagian products masih error
                     'Total': '$sum',
                   });
             },
